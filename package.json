@@ -1,0 +1,23 @@
+{
+  "name": "social-todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node dist/app.js",
+    "start:dev": "nodemon --exec ts-node src/app.ts"
+  },
+  "keywords": [],
+  "author": "Erick Koga",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^4.14.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.3",
+    "nodemon": "^2.0.21",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
+  }
+}
