@@ -1,8 +1,8 @@
 {
   "name": "social-todo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "This project is a social \"to-do\" website designed for a proficiency test. It allows users to add tasks to their personal page and view tasks added by other users. Additionally, users can edit or delete their own tasks.",
+  "main": "/dist/app.js",
   "scripts": {
     "build": "tsc",
     "start": "tsc && node dist/app.js",
@@ -12,6 +12,7 @@
   "author": "Erick Koga",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "fastify": "^4.14.1"
   },
   "devDependencies": {
