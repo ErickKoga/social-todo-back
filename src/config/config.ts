@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
  */
 
 // Load the environment variables from config.env.
-dotenv.config({ path: path.resolve(__dirname, '../config/config.env') });
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 // Defines the types for the environment variables.
 interface ENV {
