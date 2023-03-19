@@ -1,12 +1,14 @@
 import fastify, { FastifyInstance } from 'fastify';
 import envConfig from './config/env.config';
 import usersRouter from './routes/users.router';
+import todoRouter from './routes/todo.router';
 
 // Instantiate the Fastify Framework.
 const server: FastifyInstance = fastify();
 
 // Routes
 server.register(usersRouter, { prefix: 'users' });
+server.register(todoRouter, { prefix: 'todo' });
 
 // Health check
 server.get('/', async (_request, reply) => {
