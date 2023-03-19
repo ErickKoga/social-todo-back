@@ -1,23 +1,34 @@
-export const createUserSchema = {
+export const createTodoSchema = {
   body: {
     type: 'object',
     additionalProperties: false,
-    required: ['name'],
+    required: ['ownerId', 'title'],
     properties: {
-      name: { type: 'string', minLength: 3, maxLength: 255 },
-      email: { type: 'string', format: 'email' },
-      password: { type: 'string' },
+      ownerId: { type: 'string', format: 'uuid' },
+      title: { type: 'string', minLength: 1, maxLength: 255 },
+      description: { type: 'string', minLength: 0, maxLength: 255 },
+      completed: { type: 'boolean' },
     },
   },
   response: {
     '201': {
       type: 'object',
       additionalProperties: false,
-      required: ['id', 'name', 'email', 'createdAt', 'updatedAt', 'deletedAt'],
+      required: [
+        'id',
+        'title',
+        'description',
+        'completed',
+        'createdAt',
+        'updatedAt',
+        'deletedAt',
+      ],
       properties: {
         id: { type: 'string', format: 'uuid' },
-        name: { type: 'string', minLength: 3, maxLength: 255 },
-        email: { type: 'string', format: 'email' },
+        ownerId: { type: 'string', format: 'uuid' },
+        title: { type: 'string', minLength: 1, maxLength: 255 },
+        description: { type: 'string', minLength: 0, maxLength: 255 },
+        completed: { type: 'boolean' },
         createdAt: { type: 'string', format: 'date-time' },
         updatedAt: { type: 'string', format: 'date-time' },
         deletedAt: { type: 'string', format: 'date-time' },
@@ -42,7 +53,7 @@ export const createUserSchema = {
   },
 };
 
-export const getUserSchema = {
+export const getTodoSchema = {
   param: {
     type: 'object',
     additionalProperties: false,
@@ -55,11 +66,21 @@ export const getUserSchema = {
     '200': {
       type: 'object',
       additionalProperties: false,
-      required: ['id', 'name', 'email', 'createdAt', 'updatedAt', 'deletedAt'],
+      required: [
+        'id',
+        'title',
+        'description',
+        'completed',
+        'createdAt',
+        'updatedAt',
+        'deletedAt',
+      ],
       properties: {
         id: { type: 'string', format: 'uuid' },
-        name: { type: 'string', minLength: 3, maxLength: 255 },
-        email: { type: 'string', format: 'email' },
+        ownerId: { type: 'string', format: 'uuid' },
+        title: { type: 'string', minLength: 1, maxLength: 255 },
+        description: { type: 'string', minLength: 0, maxLength: 255 },
+        completed: { type: 'boolean' },
         createdAt: { type: 'string', format: 'date-time' },
         updatedAt: { type: 'string', format: 'date-time' },
         deletedAt: { type: 'string', format: 'date-time' },
@@ -84,16 +105,26 @@ export const getUserSchema = {
   },
 };
 
-export const getAllUsersSchema = {
+export const getAllTodoSchema = {
   response: {
     '200': {
       type: 'array',
       additionalProperties: false,
-      required: ['id', 'name', 'email', 'createdAt', 'updatedAt', 'deletedAt'],
+      required: [
+        'id',
+        'title',
+        'description',
+        'completed',
+        'createdAt',
+        'updatedAt',
+        'deletedAt',
+      ],
       properties: {
         id: { type: 'string', format: 'uuid' },
-        name: { type: 'string', minLength: 3, maxLength: 255 },
-        email: { type: 'string', format: 'email' },
+        ownerId: { type: 'string', format: 'uuid' },
+        title: { type: 'string', minLength: 1, maxLength: 255 },
+        description: { type: 'string', minLength: 0, maxLength: 255 },
+        completed: { type: 'boolean' },
         createdAt: { type: 'string', format: 'date-time' },
         updatedAt: { type: 'string', format: 'date-time' },
         deletedAt: { type: 'string', format: 'date-time' },
@@ -118,7 +149,7 @@ export const getAllUsersSchema = {
   },
 };
 
-export const updateUserSchema = {
+export const updateTodoSchema = {
   param: {
     type: 'object',
     additionalProperties: false,
@@ -131,19 +162,34 @@ export const updateUserSchema = {
     type: 'object',
     additionalProperties: false,
     properties: {
-      name: { type: 'string', minLength: 3, maxLength: 255 },
-      email: { type: 'string', format: 'email' },
+      ownerId: { type: 'string', format: 'uuid' },
+      title: { type: 'string', minLength: 1, maxLength: 255 },
+      description: { type: 'string', minLength: 0, maxLength: 255 },
+      completed: { type: 'boolean' },
+      createdAt: { type: 'string', format: 'date-time' },
+      updatedAt: { type: 'string', format: 'date-time' },
+      deletedAt: { type: 'string', format: 'date-time' },
     },
   },
   response: {
     '200': {
       type: 'object',
       additionalProperties: false,
-      required: ['id', 'name', 'email', 'createdAt', 'updatedAt', 'deletedAt'],
+      required: [
+        'id',
+        'title',
+        'description',
+        'completed',
+        'createdAt',
+        'updatedAt',
+        'deletedAt',
+      ],
       properties: {
         id: { type: 'string', format: 'uuid' },
-        name: { type: 'string', minLength: 3, maxLength: 255 },
-        email: { type: 'string', format: 'email' },
+        ownerId: { type: 'string', format: 'uuid' },
+        title: { type: 'string', minLength: 1, maxLength: 255 },
+        description: { type: 'string', minLength: 0, maxLength: 255 },
+        completed: { type: 'boolean' },
         createdAt: { type: 'string', format: 'date-time' },
         updatedAt: { type: 'string', format: 'date-time' },
         deletedAt: { type: 'string', format: 'date-time' },
@@ -168,7 +214,7 @@ export const updateUserSchema = {
   },
 };
 
-export const deleteUserSchema = {
+export const deleteTodoSchema = {
   param: {
     type: 'object',
     additionalProperties: false,

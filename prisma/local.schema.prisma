@@ -17,7 +17,7 @@ model User {
   name      String
   email     String    @unique
   password  String
-  ToDo      ToDo[]
+  todo      Todo[]
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt() @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
@@ -26,7 +26,7 @@ model User {
 }
 
 // List of to-do tasks.
-model ToDo {
+model Todo {
   id          String    @id @default(uuid())
   owner       User      @relation(fields: [ownerId], references: [id])
   ownerId     String    @map("owner_id")
