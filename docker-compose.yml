@@ -13,6 +13,8 @@ services:
       - ${API_PORT}:${API_PORT}
     depends_on:
       - db
+    networks:
+      - social-todo-network
 
   db:
     image: mysql:latest
@@ -25,7 +27,13 @@ services:
     ports:
       - '${DB_PORT}:${DB_PORT}'
     volumes:
-      - social-todo:/var/lib/postgresql/data
+      - social-todo:/var/lib/mysql
+    networks:
+      - social-todo-network
 
 volumes:
   social-todo:
+
+networks:
+  social-todo-network:
+    driver: bridge

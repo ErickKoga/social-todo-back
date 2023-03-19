@@ -1,36 +1,32 @@
-
 # Social ToDo
 
 This project is a social "to-do" website designed for a proficiency test. It allows users to add tasks to their personal page and view tasks added by other users. Additionally, users can edit or delete their own tasks.
-
-
-
-
 ## Run Locally
 
-Clone the project
+- Clone the project.
 
 ```bash
   git clone https://github.com/ErickKoga/social-todo
 ```
 
-Go to the project directory
+- Go to the project directory.
 
 ```bash
   cd social-todo
 ```
 
-Install dependencies
+- Insert the provided environment variables in the directory root.
+
+- Install dependencies.
 
 ```bash
   npm i
 ```
 
-Build and start the server
+- Compose the Dockerfile.
 
 ```bash
-  npm run build
-  npm run start
+  docker compose up -d
 ```
 
 
