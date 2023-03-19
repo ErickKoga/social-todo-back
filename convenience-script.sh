@@ -1,11 +1,20 @@
 #!/bin/bash
 
+# Reset every run before this one, delete every migration and all the Docker generated files.
+docker compose down > /dev/null 2>&1
+rm -r prisma/migrations > /dev/null 2>&1
+rm -r node_modules > /dev/null 2>&1
+docker rm -f $(docker ps -a -q -f name=social-todo) > /dev/null 2>&1
+docker image rm social-todo-api > /dev/null 2>&1
+docker volume rm $(docker volume ls -q -f name=social-todo) > /dev/null 2>&1
+
+
 # Source the .env file.
 . $(dirname "$0")/.env
 
 # Install packages.
 echo "Installing packages."
-npm i >/dev/null 2>&1
+npm i > /dev/null 2>&1
 
 # Run Docker container with the database.
 echo "Composing up the database."
