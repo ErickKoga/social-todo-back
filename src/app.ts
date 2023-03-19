@@ -1,11 +1,11 @@
 import fastify from 'fastify';
-import config from './config/config';
+import envConfig from './config/env.config';
 
 // Instantiate the Fastify Framework.
 const server = fastify();
 
 // Start the server on the assigned port.
-server.listen({ port: config.API_PORT }, (err, address) => {
+server.listen({ port: envConfig.API_PORT }, (err, address) => {
   // If any errors occur, throw it on the console and exit the process.
   if (err) {
     console.error(err);
