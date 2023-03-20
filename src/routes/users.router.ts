@@ -9,43 +9,34 @@ import {
   updateUserSchema,
 } from '../schemas/user.schema';
 
-async function usersRouter(fastify: FastifyInstance) {
+export default async function usersRouter(server: FastifyInstance) {
   const usersController = new UsersController();
 
-  fastify.route({
-    method: 'POST',
-    url: '',
-    schema: createUserSchema,
-    handler: usersController.createUser.bind(usersController),
-  });
-
-  fastify.route({
+  server.route({
     method: 'GET',
     url: '',
     schema: getAllUsersSchema,
     handler: usersController.getAllUsers.bind(usersController),
   });
 
-  fastify.route({
+  server.route({
     method: 'GET',
     url: '/:id',
     schema: getUserSchema,
     handler: usersController.getUserById.bind(usersController),
   });
 
-  fastify.route({
+  server.route({
     method: 'PATCH',
     url: '/:id',
     schema: updateUserSchema,
     handler: usersController.updateUser.bind(usersController),
   });
 
-  fastify.route({
+  server.route({
     method: 'DELETE',
     url: '/:id',
     schema: deleteUserSchema,
     handler: usersController.deleteUser.bind(usersController),
   });
 }
-
-export default usersRouter;

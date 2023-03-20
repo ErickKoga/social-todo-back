@@ -10,12 +10,13 @@ import dotenvExpand from 'dotenv-expand';
 
 // Load the environment variables from config.env.
 dotenvExpand.expand(
-  dotenv.config({ path: path.resolve(__dirname, '../../.env') })
+  dotenv.config({ path: path.resolve(__dirname, '../../../../.env') })
 );
 // Defines the types for the environment variables.
 interface ENV {
   API_HOST: string | undefined;
   API_PORT: number | undefined;
+  JWT_KEY: string | undefined;
   DB_DATABASE: string | undefined;
   DB_USERNAME: string | undefined;
   DB_PASSWORD: string | undefined;
@@ -31,6 +32,7 @@ interface ENV {
 interface Config {
   API_HOST: string;
   API_PORT: number;
+  JWT_KEY: string;
   DB_DATABASE: string;
   DB_USERNAME: string;
   DB_PASSWORD: string;
@@ -68,6 +70,7 @@ const getConfig = (): ENV => {
     DB_URL_ALIAS: process.env.DB_URL_ALIAS
       ? String(process.env.DB_URL_ALIAS)
       : undefined,
+    JWT_KEY: process.env.JWT_KEY ? String(process.env.JWT_KEY) : undefined,
   };
 };
 
