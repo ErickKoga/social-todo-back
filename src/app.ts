@@ -2,13 +2,21 @@ import fastify, { FastifyInstance } from 'fastify';
 import envConfig from './config/env.config';
 import usersRouter from './routes/users.router';
 import todoRouter from './routes/todo.router';
+import jwt from '@fastify/jwt';
+import authRouter from './routes/auth.router';
 
 // Instantiate the Fastify Framework.
 const server: FastifyInstance = fastify();
 
+// Plugins
+server.register(jwt, {
+  secret: envConfig.JWT_KEY,
+});
+
 // Routes
-server.register(usersRouter, { prefix: 'users' });
+server.register(authRouter, { prefix: 'auth' });
 server.register(todoRouter, { prefix: 'todo' });
+server.register(usersRouter, { prefix: 'users' });
 
 // Health check
 server.get('/', async (_request, reply) => {

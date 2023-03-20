@@ -13,34 +13,6 @@ export class UsersController {
   }
 
   /**
-   * This is a controller method that creates a user, given the data specified in the interface.
-   * @param request contains the incoming HTTP request, which includes the Idata specified in the interface in the URL parameters.
-   * @param reply contains The HTTP response object that will be sent back to the client.
-   */
-  public async createUser(
-    request: FastifyRequest<{
-      Body: IUserRequest;
-    }>,
-    reply: FastifyReply
-  ): Promise<void> {
-    try {
-      const newUser: IUserRequest = request.body;
-      const user: Partial<User> = await this.usersService.createUser(newUser);
-      reply.status(200).send(user);
-      return;
-    } catch (error: any) {
-      // If the email is already registered, throw an error.
-      if (error.code && error.code === 'P2002') {
-        console.error(error);
-        replyContent(reply, 409, `User e-mail already registered.`);
-      }
-      // If any error occurs, return an internal error.
-      console.error(error);
-      replyContent(reply, 500, 'Internal server exception.');
-    }
-  }
-
-  /**
    * This is a controller method that reads all users.
    * @param reply contains The HTTP response object that will be sent back to the client.
    */

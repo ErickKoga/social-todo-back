@@ -6,19 +6,6 @@ const prisma: PrismaClient = new PrismaClient();
 
 export class UsersService {
   /**
-   * Create a new user.
-   * @param newUser contains all the data of the new user.
-   * @returns an instance of the new user.
-   */
-  async createUser(newUser: IUserRequest): Promise<Partial<User>> {
-    const user: Partial<User> = await prisma.user.create({
-      data: newUser,
-    });
-    const { password, ...filteredUser } = user;
-    return filteredUser;
-  }
-
-  /**
    * List all the users in the database.
    * @returns an array containing all the users.
    */
