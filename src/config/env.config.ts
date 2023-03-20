@@ -9,9 +9,7 @@ import dotenvExpand from 'dotenv-expand';
  */
 
 // Load the environment variables from config.env.
-dotenvExpand.expand(
-  dotenv.config({ path: path.resolve(__dirname, '../../../../.env') })
-);
+dotenvExpand.expand(dotenv.config({ path: path.resolve(__dirname, '/.env') }));
 // Defines the types for the environment variables.
 interface ENV {
   API_HOST: string | undefined;
