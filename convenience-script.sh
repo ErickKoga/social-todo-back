@@ -5,13 +5,15 @@ echo "CONVENIENCE SCRIPT: Hard reset..."
 docker compose down > /dev/null 2>&1
 rm -r prisma/migrations > /dev/null 2>&1
 rm -r node_modules > /dev/null 2>&1
-docker rm -f $(docker ps -a -q -f name=social-todo) > /dev/null 2>&1
-docker image rm social-todo-api > /dev/null 2>&1
-docker volume rm $(docker volume ls -q -f name=social-todo) > /dev/null 2>&1
+docker rm -f $(docker ps -a -q -f name=social-todo-back) > /dev/null 2>&1
+docker image rm social-todo-back-api > /dev/null 2>&1
+docker volume rm $(docker volume ls -q -f name=social-todo-back) > /dev/null 2>&1
 
 
 # Source the .env file.
-. $(dirname "$0")/.env
+set -o allexport
+source .env
+set +o allexport
 
 # Install packages.
 echo "CONVENIENCE SCRIPT: Installing packages..."
@@ -23,7 +25,7 @@ docker compose up db -d >/dev/null 2>&1
 
 # Wait for MySQL connectivity
 echo "CONVENIENCE SCRIPT: Waiting for MySQL database to become available..."
-while ! docker exec social-todo-db-1 mysql --protocol=tcp -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e "use $DB_DATABASE" >/dev/null 2>&1; do
+while ! docker exec $DB_HOST_ALIAS mysql --protocol=tcp -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e "use $DB_DATABASE"; do
     sleep 1
 done
 echo "CONVENIENCE SCRIPT: MySQL database is now running and accessible..."
