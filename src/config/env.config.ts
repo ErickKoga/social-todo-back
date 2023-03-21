@@ -12,6 +12,8 @@ import dotenvExpand from 'dotenv-expand';
 dotenvExpand.expand(dotenv.config({ path: path.resolve(__dirname, '/.env') }));
 // Defines the types for the environment variables.
 interface ENV {
+  WEB_HOST: string | undefined;
+  WEB_PORT: number | undefined;
   API_HOST: string | undefined;
   API_PORT: number | undefined;
   JWT_KEY: string | undefined;
@@ -28,6 +30,8 @@ interface ENV {
 
 // Defines the types that the final configuration object needs to be.
 interface Config {
+  WEB_HOST: string;
+  WEB_PORT: number;
   API_HOST: string;
   API_PORT: number;
   JWT_KEY: string;
@@ -45,6 +49,8 @@ interface Config {
 // Gets the environment variables and return them as an ENV object.
 const getConfig = (): ENV => {
   return {
+    WEB_HOST: process.env.WEB_HOST ? String(process.env.WEB_HOST) : undefined,
+    WEB_PORT: process.env.WEB_PORT ? Number(process.env.WEB_PORT) : undefined,
     API_HOST: process.env.API_HOST ? String(process.env.API_HOST) : undefined,
     API_PORT: process.env.API_PORT ? Number(process.env.API_PORT) : undefined,
     DB_DATABASE: process.env.DB_DATABASE

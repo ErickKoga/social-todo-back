@@ -4,6 +4,7 @@ import usersRouter from './routes/users.router';
 import todoRouter from './routes/todo.router';
 import jwt from '@fastify/jwt';
 import authRouter from './routes/auth.router';
+import fastifyCors from '@fastify/cors';
 
 // Instantiate the Fastify Framework.
 const server: FastifyInstance = fastify();
@@ -11,6 +12,11 @@ const server: FastifyInstance = fastify();
 // Plugins
 server.register(jwt, {
   secret: envConfig.JWT_KEY,
+});
+
+// Register backend CORS.
+server.register(fastifyCors, {
+  origin: `${envConfig.WEB_HOST}:${envConfig.WEB_PORT}`,
 });
 
 // Routes

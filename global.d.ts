@@ -1,5 +1,7 @@
 namespace NodeJS {
   interface ProcessEnv {
+    WEB_HOST: string;
+    WEB_PORT: number;
     API_HOST: string;
     API_PORT: number;
     JWT_KEY: string;
