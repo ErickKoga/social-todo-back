@@ -1,9 +1,9 @@
-import { Todo } from '@prisma/client';
-import { FastifyReply, FastifyRequest } from 'fastify';
+import { Todo } from "@prisma/client";
+import { FastifyReply, FastifyRequest } from "fastify";
 
-import { replyContent } from '../helpers/reply-content';
-import { ITodoRequest } from '../interfaces/todo.interface';
-import { TodoService } from '../services/todo.service';
+import { replyContent } from "../helpers/reply-content";
+import { ITodoRequest } from "../interfaces/todo.interface";
+import { TodoService } from "../services/todo.service";
 
 export class TodoController {
   private todoService: TodoService;
@@ -29,14 +29,9 @@ export class TodoController {
       reply.status(200).send(todo);
       return;
     } catch (error: any) {
-      // If the email is already registered, throw an error.
-      if (error.code && error.code === 'P2002') {
-        console.error(error);
-        replyContent(reply, 409, `Todo e-mail already registered.`);
-      }
       // If any error occurs, return an internal error.
       console.error(error);
-      replyContent(reply, 500, 'Internal server exception.');
+      replyContent(reply, 500, "Internal server exception.");
     }
   }
 
@@ -55,7 +50,7 @@ export class TodoController {
     } catch (error: any) {
       // If any error occurs, return an internal error.
       console.error(error);
-      replyContent(reply, 500, 'Internal server exception.');
+      replyContent(reply, 500, "Internal server exception.");
     }
   }
 
@@ -74,7 +69,7 @@ export class TodoController {
       );
 
       if (!todo) {
-        replyContent(reply, 404, 'Todo not found.');
+        replyContent(reply, 404, "Todo not found.");
         return;
       }
 
@@ -82,7 +77,7 @@ export class TodoController {
     } catch (error: any) {
       // If any error occurs, return an internal error.
       console.error(error);
-      replyContent(reply, 500, 'Internal server exception.');
+      replyContent(reply, 500, "Internal server exception.");
     }
   }
 
@@ -103,7 +98,7 @@ export class TodoController {
       );
       // If it does not find a match, return with a not found exception.
       if (!todo) {
-        replyContent(reply, 404, 'Todo not found.');
+        replyContent(reply, 404, "Todo not found.");
         return;
       }
       // Return success, and an instance of the updated todo.
@@ -111,7 +106,7 @@ export class TodoController {
     } catch (error: any) {
       // If any error occurs, return an internal error.
       console.error(error);
-      replyContent(reply, 500, 'Internal server exception.');
+      replyContent(reply, 500, "Internal server exception.");
     }
   }
 
@@ -134,7 +129,7 @@ export class TodoController {
       );
     } catch (error: any) {
       // If a todo is not found, return a not found exception.
-      if (error.code && error.code === 'P2025') {
+      if (error.code && error.code === "P2025") {
         console.error(error);
         replyContent(
           reply,
@@ -144,7 +139,7 @@ export class TodoController {
       }
       // If any error occurs, return an internal error.
       console.error(error);
-      replyContent(reply, 500, 'Internal server exception.');
+      replyContent(reply, 500, "Internal server exception.");
     }
   }
 }

@@ -11,18 +11,31 @@ datasource db {
   url      = env("DB_URL_ALIAS")
 }
 
-// List of users.
+//List of users
 model User {
   id        String    @id @default(uuid())
   name      String
   email     String    @unique
   password  String
   todo      Todo[]
+  followers Follow[]  @relation("Followers")
+  following Follow[]  @relation("Following")
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt() @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
 
   @@map("users")
+}
+
+// List of followers and followed.
+model Follow {
+  id          String @id @default(uuid())
+  follower    User   @relation("Followers", fields: [followerId], references: [id])
+  followerId  String @map("follower_id")
+  following   User   @relation("Following", fields: [followingId], references: [id])
+  followingId String @map("following_id")
+
+  @@map("follows")
 }
 
 // List of to-do tasks.
