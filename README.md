@@ -2,7 +2,7 @@
 
 This project is a social "to-do" website designed for a proficiency test. It allows users to add tasks to their personal page and view tasks added by other users. Additionally, users can edit or delete their own tasks.
 
-[Check out this project's backend](https://github.com/ErickKoga/social-todo-front)
+[Check out this project's frontend](https://github.com/ErickKoga/social-todo-front)
 
 ## Run Locally
 
