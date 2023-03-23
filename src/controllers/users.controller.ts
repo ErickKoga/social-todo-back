@@ -128,7 +128,7 @@ export class UsersController {
   ): Promise<void> {
     try {
       const { followerId, followingId } = request.body;
-      await this.usersService.followUser(followerId, followingId);
+      await this.usersService.follow(followerId, followingId);
       reply.status(200);
       return;
     } catch (error: any) {
@@ -145,7 +145,7 @@ export class UsersController {
   ): Promise<void> {
     try {
       const { followerId, followingId } = request.body;
-      await this.usersService.unfollowUser(followerId, followingId);
+      await this.usersService.unfollow(followerId, followingId);
       reply.status(200);
       return;
     } catch (error: any) {

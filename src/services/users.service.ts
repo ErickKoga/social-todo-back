@@ -1,6 +1,6 @@
-import { PrismaClient, User } from '@prisma/client';
+import { PrismaClient, User } from "@prisma/client";
 
-import { IUserRequest } from '../interfaces/user.interface';
+import { IUserRequest } from "../interfaces/user.interface";
 
 const prisma: PrismaClient = new PrismaClient();
 
@@ -77,5 +77,23 @@ export class UsersService {
     } catch (error: any) {
       throw error;
     }
+  }
+
+  async follow(followerId: string, followingId: string): Promise<void> {
+    await prisma.follow.create({
+      data: {
+        followerId: followerId,
+        followingId: followingId,
+      },
+    });
+  }
+
+  async unfollow(followerId: string, followingId: string): Promise<void> {
+    await prisma.follow.deleteMany({
+      where: {
+        followerId: followerId,
+        followingId: followingId,
+      },
+    });
   }
 }
