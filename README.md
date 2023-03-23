@@ -13,13 +13,13 @@ To run this project locally, there are two ways: the convenience script which do
 - Clone the project.
 
 ```bash
-  git clone https://github.com/ErickKoga/social-todo
+  git clone https://github.com/ErickKoga/social-todo-back
 ```
 
 - Go to the project directory.
 
 ```bash
-  cd social-todo
+  cd social-todo-back
 ```
 
 - Insert the provided environment variables in the directory root.
@@ -41,7 +41,7 @@ To run this project locally, there are two ways: the convenience script which do
 - Clone the project.
 
 ```bash
-  git clone https://github.com/ErickKoga/social-todo
+  git clone https://github.com/ErickKoga/social-todo-back
 ```
 
 - Go to the project directory.
