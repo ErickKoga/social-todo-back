@@ -1,9 +1,9 @@
-import { User } from '@prisma/client';
-import { FastifyReply, FastifyRequest } from 'fastify';
+import { User } from "@prisma/client";
+import { FastifyReply, FastifyRequest } from "fastify";
 
-import { replyContent } from '../helpers/reply-content';
-import { IUserRequest } from '../interfaces/user.interface';
-import { UsersService } from '../services/users.service';
+import { replyContent } from "../helpers/reply-content";
+import { IUserRequest } from "../interfaces/user.interface";
+import { UsersService } from "../services/users.service";
 
 export class UsersController {
   private usersService: UsersService;
@@ -27,7 +27,7 @@ export class UsersController {
     } catch (error: any) {
       // If any error occurs, return an internal error.
       console.error(error);
-      replyContent(reply, 500, 'Internal server exception.');
+      replyContent(reply, 500, "Internal server exception.");
     }
   }
 
@@ -46,7 +46,7 @@ export class UsersController {
       );
 
       if (!user) {
-        replyContent(reply, 404, 'User not found.');
+        replyContent(reply, 404, "User not found.");
         return;
       }
 
@@ -54,7 +54,7 @@ export class UsersController {
     } catch (error: any) {
       // If any error occurs, return an internal error.
       console.error(error);
-      replyContent(reply, 500, 'Internal server exception.');
+      replyContent(reply, 500, "Internal server exception.");
     }
   }
 
@@ -75,7 +75,7 @@ export class UsersController {
       );
       // If it does not find a match, return with a not found exception.
       if (!user) {
-        replyContent(reply, 404, 'User not found.');
+        replyContent(reply, 404, "User not found.");
         return;
       }
       // Return success, and an instance of the updated user.
@@ -83,7 +83,7 @@ export class UsersController {
     } catch (error: any) {
       // If any error occurs, return an internal error.
       console.error(error);
-      replyContent(reply, 500, 'Internal server exception.');
+      replyContent(reply, 500, "Internal server exception.");
     }
   }
 
@@ -106,7 +106,7 @@ export class UsersController {
       );
     } catch (error: any) {
       // If a user is not found, return a not found exception.
-      if (error.code && error.code === 'P2025') {
+      if (error.code && error.code === "P2025") {
         console.error(error);
         replyContent(
           reply,
@@ -116,7 +116,41 @@ export class UsersController {
       }
       // If any error occurs, return an internal error.
       console.error(error);
-      replyContent(reply, 500, 'Internal server exception.');
+      replyContent(reply, 500, "Internal server exception.");
+    }
+  }
+
+  public async follow(
+    request: FastifyRequest<{
+      Body: { followerId: string; followingId: string };
+    }>,
+    reply: FastifyReply
+  ): Promise<void> {
+    try {
+      const { followerId, followingId } = request.body;
+      await this.usersService.followUser(followerId, followingId);
+      reply.status(200);
+      return;
+    } catch (error: any) {
+      console.error(error);
+      replyContent(reply, 500, "Internal server exception.");
+    }
+  }
+
+  public async unfollow(
+    request: FastifyRequest<{
+      Body: { followerId: string; followingId: string };
+    }>,
+    reply: FastifyReply
+  ): Promise<void> {
+    try {
+      const { followerId, followingId } = request.body;
+      await this.usersService.unfollowUser(followerId, followingId);
+      reply.status(200);
+      return;
+    } catch (error: any) {
+      console.error(error);
+      replyContent(reply, 500, "Internal server exception.");
     }
   }
 }

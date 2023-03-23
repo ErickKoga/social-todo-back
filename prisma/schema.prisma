@@ -18,6 +18,8 @@ model User {
   email     String    @unique
   password  String
   todo      Todo[]
+  followers Follow[]  @relation("Followers")
+  following Follow[]  @relation("Following")
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt() @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
@@ -38,4 +40,16 @@ model Todo {
   deletedAt   DateTime? @map("deleted_at")
 
   @@map("to_do")
+}
+
+// List of follows.
+model Follow {
+  id          String   @id @default(uuid())
+  follower    User     @relation("Followers", fields: [followerId], references: [id])
+  followerId  String   @map("follower_id")
+  following   User     @relation("Following", fields: [followingId], references: [id])
+  followingId String   @map("following_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@map("follows")
 }
