@@ -2,6 +2,8 @@
 
 This project is a social "to-do" website designed for a proficiency test. It allows users to add tasks to their personal page and view tasks added by other users. Additionally, users can edit or delete their own tasks.
 
+[Check out this project's backend](https://github.com/ErickKoga/social-todo-front)
+
 ## Run Locally
 
 To run this project locally, there are two ways: the convenience script which does everything in a simple execution, or running each command yourself.
@@ -65,7 +67,7 @@ To run this project locally, there are two ways: the convenience script which do
 - After the database fully starts, run the first migration.
 
 ```bash
-  npx prisma migrate dev --name init --schema ./prisma/local.schema.prisma 
+  npx prisma migrate dev --name init --schema ./prisma/local.schema.prisma
 ```
 
 - Generate the Prisma Client.
@@ -81,7 +83,8 @@ To run this project locally, there are two ways: the convenience script which do
 ```
 
 ## Author
+
 Erick Koga
+
 - [GitHub](https://github.com/erickkoga)
 - [LinkedIn](https://linkedin.com/in/erick-koga)
-
